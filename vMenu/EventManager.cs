@@ -69,34 +69,7 @@ namespace vMenuClient
             cb(JsonConvert.SerializeObject(new { ok = true }));
         }
 
-        private bool firstSpawn = true;
-        /// <summary>
-        /// Sets the saved character whenever the player first spawns.
-        /// </summary>
-        private async void SetAppearanceOnFirstSpawn()
-        {
-            if (firstSpawn)
-            {
-                firstSpawn = false;
-                if (MainMenu.MiscSettingsMenu != null && MainMenu.MpPedCustomizationMenu != null && MainMenu.MiscSettingsMenu.MiscRespawnDefaultCharacter && !string.IsNullOrEmpty(GetResourceKvpString("vmenu_default_character")) && !GetSettingsBool(Setting.vmenu_disable_spawning_as_default_character))
-                {
-                    await MainMenu.MpPedCustomizationMenu.SpawnThisCharacter(GetResourceKvpString("vmenu_default_character"), false);
-                }
-                while (!IsScreenFadedIn() || IsPlayerSwitchInProgress() || IsPauseMenuActive() || GetIsLoadingScreenActive())
-                {
-                    await Delay(0);
-                }
-                if (MainMenu.WeaponLoadoutsMenu != null && MainMenu.WeaponLoadoutsMenu.WeaponLoadoutsSetLoadoutOnRespawn && IsAllowed(Permission.WLEquipOnRespawn))
-                {
-                    var saveName = GetResourceKvpString("vmenu_string_default_loadout");
-                    if (!string.IsNullOrEmpty(saveName))
-                    {
-                        await SpawnWeaponLoadoutAsync(saveName, true, false, true);
-                    }
-
-                }
-            }
-        }
+        
 
         /// <summary>
         /// Sets the addon models from the addons.json file.
@@ -106,15 +79,7 @@ namespace vMenuClient
             MainMenu.ConfigOptionsSetupComplete = true;
         }
 
-        /// <summary>
-        /// Update ban list.
-        /// </summary>
-        /// <param name="list"></param>
-        private void UpdateBanList(string list)
-        {
-            if (MainMenu.BannedPlayersMenu != null)
-                MainMenu.BannedPlayersMenu.UpdateBanList(list);
-        }
+        
 
         /// <summary>
         /// Used for cheaters.
@@ -221,23 +186,7 @@ namespace vMenuClient
             SetEntityHealth(Game.PlayerPed.Handle, 0);
         }
 
-        /// <summary>
-        /// Teleport to the specified player.
-        /// </summary>
-        /// <param name="targetPlayer"></param>
-        private async void SummonPlayer(string targetPlayer)
-        {
-            // ensure the player list is requested in case of Infinity
-            MainMenu.PlayersList.RequestPlayerList();
-            await MainMenu.PlayersList.WaitRequested();
-
-            var player = MainMenu.PlayersList.FirstOrDefault(a => a.ServerId == int.Parse(targetPlayer));
-
-            if (player != null)
-            {
-                _ = TeleportToPlayer(player);
-            }
-        }
+        
 
         /// <summary>
         /// Clear the area around the provided x, y, z coordinates. Clears everything like (destroyed) objects, peds, (ai) vehicles, etc.
@@ -251,60 +200,7 @@ namespace vMenuClient
             ClearAreaOfEverything(x, y, z, 100f, false, false, false, false);
         }
 
-        /// <summary>
-        /// Kicks the current player from the specified vehicle if they're inside and don't own the vehicle themselves.
-        /// </summary>
-        /// <param name="vehNetId"></param>
-        /// <param name="vehicleOwnedBy"></param>
-        private async void GetOutOfCar(int vehNetId, int vehicleOwnedBy)
-        {
-            if (NetworkDoesNetworkIdExist(vehNetId))
-            {
-                int veh = NetToVeh(vehNetId);
-                if (DoesEntityExist(veh))
-                {
-                    Vehicle vehicle = new Vehicle(veh);
-
-                    if (vehicle == null || !vehicle.Exists())
-                        return;
-
-                    if (Game.PlayerPed.IsInVehicle(vehicle) && vehicleOwnedBy != Game.Player.ServerId)
-                    {
-                        if (!vehicle.IsStopped)
-                        {
-                            Notify.Alert("The owner of this vehicle is reclaiming their personal vehicle. You will be kicked from this vehicle in about 10 seconds. Stop the vehicle now to avoid taking damage.", false, true);
-                        }
-
-                        // Wait for the vehicle to come to a stop, or 10 seconds, whichever is faster.
-                        var timer = GetGameTimer();
-                        while (vehicle != null && vehicle.Exists() && !vehicle.IsStopped)
-                        {
-                            await Delay(0);
-                            if (GetGameTimer() - timer > (10 * 1000)) // 10 second timeout
-                            {
-                                break;
-                            }
-                        }
-
-                        // just to make sure they're actually still inside the vehicle and the vehicle still exists.
-                        if (vehicle != null && vehicle.Exists() && Game.PlayerPed.IsInVehicle(vehicle))
-                        {
-                            // Make the ped jump out because the car isn't stopped yet.
-                            if (!vehicle.IsStopped)
-                            {
-                                Notify.Info("You were warned, now you'll have to suffer the consequences!");
-                                TaskLeaveVehicle(Game.PlayerPed.Handle, vehicle.Handle, 4160);
-                            }
-                            // Make the ped exit gently.
-                            else
-                            {
-                                TaskLeaveVehicle(Game.PlayerPed.Handle, vehicle.Handle, 0);
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        
 
         /// <summary>
         /// Updates ped decorators for the clothing animation when players have joined.
@@ -318,13 +214,6 @@ namespace vMenuClient
             PlayerAppearance.ClothingAnimationType = backup;
         }
 
-        /// <summary>
-        /// Updates the teleports locations data from the server side locations.json, because that doesn't update client side on change.
-        /// </summary>
-        /// <param name="jsonData"></param>
-        private void UpdateTeleportLocations(string jsonData)
-        {
-            MiscSettings.TpLocations = JsonConvert.DeserializeObject<List<vMenuShared.ConfigManager.TeleportLocation>>(jsonData);
-        }
+        
     }
 }
