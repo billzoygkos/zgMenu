@@ -209,7 +209,7 @@ namespace vMenuClient
                     Notify.Alert("You must save your ped first before exiting, or click the ~r~Exit Without Saving~s~ button.");
                 }
 
-
+                #endregion
 
                 // Menu toggle button.
                 Game.DisableControlThisFrame(0, MenuToggleKey);
