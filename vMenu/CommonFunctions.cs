@@ -695,50 +695,7 @@ namespace vMenuClient
 
         
 
-        /// <summary>
-        /// Spawn a weapon by asking the player for the weapon name.
-        /// </summary>
-        public static async void SpawnCustomWeapon()
-        {
-            int ammo = 900;
-            string inputName = await GetUserInput(windowTitle: "Enter Weapon Model Name", maxInputLength: 30);
-            if (!string.IsNullOrEmpty(inputName))
-            {
-                if (!ValidWeapons.weaponPermissions.ContainsKey(inputName.ToLower()))
-                {
-                    if (!IsAllowed(Permission.WPSpawn))
-                    {
-                        Notify.Error("Sorry, you do not have permission to spawn this weapon.");
-                        return;
-                    }
-                }
-                else
-                {
-                    if (!IsAllowed(ValidWeapons.weaponPermissions[inputName.ToLower()]))
-                    {
-                        Notify.Error("Sorry, you are not allowed to spawn that weapon by name because it's a restricted weapon.");
-                        return;
-                    }
-                }
-
-                var model = (uint)GetHashKey(inputName.ToUpper());
-
-                if (IsWeaponValid(model))
-                {
-                    GiveWeaponToPed(Game.PlayerPed.Handle, model, ammo, false, true);
-                    Notify.Success("Added weapon to inventory.");
-                }
-                else
-                {
-                    Notify.Error($"This ({inputName}) is not a valid weapon model name, or the model hash ({model}) could not be found in the game files.");
-                }
-            }
-            else
-            {
-                Notify.Error(CommonErrors.InvalidInput);
-            }
-        }
-        #endregion
+ 
 
         
 
