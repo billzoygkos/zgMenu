@@ -87,51 +87,7 @@ namespace vMenuClient
             //TriggerServerEvent("vMenu:RequestServerState");
         }
 
-        #region Infinity bits
-        [EventHandler("vMenu:SetServerState")]
-        public void SetServerState(IDictionary<string, object> data)
-        {
-            if (data.TryGetValue("IsInfinity", out var isInfinity))
-            {
-                if (isInfinity is bool isInfinityBool)
-                {
-                    if (isInfinityBool)
-                    {
-                        PlayersList = new InfinityPlayerList(Players);
-                    }
-                }
-            }
-        }
-
-        [EventHandler("vMenu:ReceivePlayerList")]
-        public void ReceivedPlayerList(IList<object> players)
-        {
-            PlayersList?.ReceivedPlayerList(players);
-        }
-
-        public static async Task<Vector3> RequestPlayerCoordinates(int serverId)
-        {
-            Vector3 coords = Vector3.Zero;
-            bool completed = false;
-
-            // TODO: replace with client<->server RPC once implemented in CitizenFX!
-            Func<Vector3, bool> CallbackFunction = (data) =>
-            {
-                coords = data;
-                completed = true;
-                return true;
-            };
-
-            TriggerServerEvent("vMenu:GetPlayerCoords", serverId, CallbackFunction);
-
-            while (!completed)
-            {
-                await Delay(0);
-            }
-
-            return coords;
-        }
-        #endregion
+        
 
         #region Set Permissions function
         /// <summary>
