@@ -19,16 +19,11 @@ namespace vMenuClient
         private Menu menu;
 
         // Public variables (getters only), return the private variables.
-        public bool PlayerGodMode { get; private set; } = UserDefaults.PlayerGodMode;
+
         public bool PlayerInvisible { get; private set; } = false;
-        public bool PlayerStamina { get; private set; } = UserDefaults.UnlimitedStamina;
-        public bool PlayerFastRun { get; private set; } = UserDefaults.FastRun;
-        public bool PlayerFastSwim { get; private set; } = UserDefaults.FastSwim;
-        public bool PlayerSuperJump { get; private set; } = UserDefaults.SuperJump;
-        public bool PlayerNoRagdoll { get; private set; } = UserDefaults.NoRagdoll;
-        public bool PlayerNeverWanted { get; private set; } = UserDefaults.NeverWanted;
-        public bool PlayerIsIgnored { get; private set; } = UserDefaults.EveryoneIgnorePlayer;
-        public bool PlayerStayInVehicle { get; private set; } = UserDefaults.PlayerStayInVehicle;
+
+
+
         public bool PlayerFrozen { get; private set; } = false;
         private Menu CustomDrivingStyleMenu = new Menu("Driving Style", "Custom Driving Style");
 
@@ -398,14 +393,7 @@ namespace vMenuClient
                 {
                     PlayerFrozen = _checked;
 
-                    if (!MainMenu.NoClipEnabled)
-                    {
-                        FreezeEntityPosition(Game.PlayerPed.Handle, PlayerFrozen);
-                    }
-                    else if (!MainMenu.NoClipEnabled)
-                    {
-                        FreezeEntityPosition(Game.PlayerPed.Handle, PlayerFrozen);
-                    }
+                   
                 }
             };
 
@@ -433,36 +421,7 @@ namespace vMenuClient
             menu.OnItemSelect += (sender, item, index) =>
             {
                 // Force Stop Scenario button
-                if (item == stopScenario)
-                {
-                    // Play a new scenario named "forcestop" (this scenario doesn't exist, but the "Play" function checks
-                    // for the string "forcestop", if that's provided as th scenario name then it will forcefully clear the player task.
-                    PlayScenario("forcestop");
-                }
-                else if (item == healPlayerBtn)
-                {
-                    Game.PlayerPed.Health = Game.PlayerPed.MaxHealth;
-                    Notify.Success("Player healed.");
-                }
-                else if (item == cleanPlayerBtn)
-                {
-                    Game.PlayerPed.ClearBloodDamage();
-                    Notify.Success("Player clothes have been cleaned.");
-                }
-                else if (item == dryPlayerBtn)
-                {
-                    Game.PlayerPed.WetnessHeight = 0f;
-                    Notify.Success("Player is now dry.");
-                }
-                else if (item == wetPlayerBtn)
-                {
-                    Game.PlayerPed.WetnessHeight = 2f;
-                    Notify.Success("Player is now wet.");
-                }
-                else if (item == suicidePlayerBtn)
-                {
-                    CommitSuicide();
-                }
+                
             };
             #endregion
 
