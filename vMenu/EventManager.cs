@@ -35,18 +35,17 @@ namespace vMenuClient
             // Add event handlers.
             EventHandlers.Add("vMenu:SetAddons", new Action(SetAddons));
             EventHandlers.Add("vMenu:SetPermissions", new Action<string>(MainMenu.SetPermissions));
-            EventHandlers.Add("vMenu:GoToPlayer", new Action<string>(SummonPlayer));
-            EventHandlers.Add("vMenu:KillMe", new Action<string>(KillMe));
+
             EventHandlers.Add("vMenu:Notify", new Action<string>(NotifyPlayer));
             EventHandlers.Add("vMenu:SetClouds", new Action<float, string>(SetClouds));
             EventHandlers.Add("vMenu:GoodBye", new Action(GoodBye));
-            EventHandlers.Add("vMenu:SetBanList", new Action<string>(UpdateBanList));
+
             EventHandlers.Add("vMenu:ClearArea", new Action<float, float, float>(ClearAreaNearPos));
             EventHandlers.Add("vMenu:updatePedDecors", new Action(UpdatePedDecors));
-            EventHandlers.Add("playerSpawned", new Action(SetAppearanceOnFirstSpawn));
-            EventHandlers.Add("vMenu:GetOutOfCar", new Action<int, int>(GetOutOfCar));
+
+
             EventHandlers.Add("vMenu:PrivateMessage", new Action<string, string>(PrivateMessage));
-            EventHandlers.Add("vMenu:UpdateTeleportLocations", new Action<string>(UpdateTeleportLocations));
+
 
             
             RegisterNuiCallbackType("disableImportExportNUI");
