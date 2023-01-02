@@ -2114,28 +2114,7 @@ namespace vMenuClient
         }
         #endregion
 
-        #region Weapon Loadouts
-        /// <summary>
-        /// Gets a saved weapons loadout.
-        /// </summary>
-        /// <param name="saveName"></param>
-        /// <returns></returns>
-        public static List<ValidWeapon> GetSavedWeaponLoadout(string saveName)
-        {
-            if (saveName == "vmenu_temp_weapons_loadout_before_respawn")
-            {
-                return JsonConvert.DeserializeObject<List<ValidWeapon>>(GetResourceKvpString("vmenu_temp_weapons_loadout_before_respawn") ?? "{}");
-            }
-            else
-            {
-                string kvp = GetResourceKvpString(saveName.StartsWith("vmenu_string_saved_weapon_loadout_") ? saveName : "vmenu_string_saved_weapon_loadout_" + saveName);
-                if (string.IsNullOrEmpty(kvp))
-                {
-                    return new List<ValidWeapon>();
-                }
-                return JsonConvert.DeserializeObject<List<ValidWeapon>>(kvp);
-            }
-        }
+        
 
         /// <summary>
         /// Spawns a saved weapons loadout.
