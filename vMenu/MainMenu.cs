@@ -24,33 +24,33 @@ namespace vMenuClient
         public static Control MenuToggleKey { get { return MenuController.MenuToggleKey; } private set { MenuController.MenuToggleKey = value; } } // M by default (InteractionMenu)
         public static int NoClipKey { get; private set; } = 289; // F2 by default (ReplayStartStopRecordingSecondary)
         public static Menu Menu { get; private set; }
-        public static Menu PlayerSubmenu { get; private set; }
-        public static Menu VehicleSubmenu { get; private set; }
-        public static Menu WorldSubmenu { get; private set; }
+        //public static Menu PlayerSubmenu { get; private set; }
+        //public static Menu VehicleSubmenu { get; private set; }
+        //public static Menu WorldSubmenu { get; private set; }
 
-        public static PlayerOptions PlayerOptionsMenu { get; private set; }
-        public static OnlinePlayers OnlinePlayersMenu { get; private set; }
-        public static BannedPlayers BannedPlayersMenu { get; private set; }
-        public static SavedVehicles SavedVehiclesMenu { get; private set; }
-        public static PersonalVehicle PersonalVehicleMenu { get; private set; }
-        public static VehicleOptions VehicleOptionsMenu { get; private set; }
-        public static VehicleSpawner VehicleSpawnerMenu { get; private set; }
-        public static PlayerAppearance PlayerAppearanceMenu { get; private set; }
+        //public static PlayerOptions PlayerOptionsMenu { get; private set; }
+        //public static OnlinePlayers OnlinePlayersMenu { get; private set; }
+        //public static BannedPlayers BannedPlayersMenu { get; private set; }
+        //public static SavedVehicles SavedVehiclesMenu { get; private set; }
+        //public static PersonalVehicle PersonalVehicleMenu { get; private set; }
+        //public static VehicleOptions VehicleOptionsMenu { get; private set; }
+        //public static VehicleSpawner VehicleSpawnerMenu { get; private set; }
+        //public static PlayerAppearance PlayerAppearanceMenu { get; private set; }
         public static MpPedCustomization MpPedCustomizationMenu { get; private set; }
-        public static TimeOptions TimeOptionsMenu { get; private set; }
-        public static WeatherOptions WeatherOptionsMenu { get; private set; }
-        public static WeaponOptions WeaponOptionsMenu { get; private set; }
-        public static WeaponLoadouts WeaponLoadoutsMenu { get; private set; }
-        public static Recording RecordingMenu { get; private set; }
-        public static MiscSettings MiscSettingsMenu { get; private set; }
-        public static VoiceChat VoiceChatSettingsMenu { get; private set; }
-        public static About AboutMenu { get; private set; }
-        public static bool NoClipEnabled { get { return NoClip.IsNoclipActive(); } set { NoClip.SetNoclipActive(value); } }
-        public static IPlayerList PlayersList;
+        //public static TimeOptions TimeOptionsMenu { get; private set; }
+        //public static WeatherOptions WeatherOptionsMenu { get; private set; }
+        //public static WeaponOptions WeaponOptionsMenu { get; private set; }
+        //public static WeaponLoadouts WeaponLoadoutsMenu { get; private set; }
+        //public static Recording RecordingMenu { get; private set; }
+        //public static MiscSettings MiscSettingsMenu { get; private set; }
+        //public static VoiceChat VoiceChatSettingsMenu { get; private set; }
+        //public static About AboutMenu { get; private set; }
+        //public static bool NoClipEnabled { get { return NoClip.IsNoclipActive(); } set { NoClip.SetNoclipActive(value); } }
+        //public static IPlayerList PlayersList;
 
-        public static bool DebugMode = GetResourceMetadata(GetCurrentResourceName(), "client_debug_mode", 0) == "true" ? true : false;
-        public static bool EnableExperimentalFeatures = (GetResourceMetadata(GetCurrentResourceName(), "experimental_features_enabled", 0) ?? "0") == "1";
-        public static string Version { get { return GetResourceMetadata(GetCurrentResourceName(), "version", 0); } }
+        //public static bool DebugMode = GetResourceMetadata(GetCurrentResourceName(), "client_debug_mode", 0) == "true" ? true : false;
+       // public static bool EnableExperimentalFeatures = (GetResourceMetadata(GetCurrentResourceName(), "experimental_features_enabled", 0) ?? "0") == "1";
+        //public static string Version { get { return GetResourceMetadata(GetCurrentResourceName(), "version", 0); } }
 
         public static bool DontOpenMenus { get { return MenuController.DontOpenAnyMenu; } set { MenuController.DontOpenAnyMenu = value; } }
         public static bool DisableControls { get { return MenuController.DisableMenuButtons; } set { MenuController.DisableMenuButtons = value; } }
