@@ -585,6 +585,7 @@ namespace vMenuClient
                 }
             }
         }
+        #endregion
 
         #region ToProperString()
         /// <summary>
