@@ -29,27 +29,7 @@ namespace vMenuServer
         /// <param name="data"></param>
         public static void Log(dynamic data, LogLevel level = LogLevel.none)
         {
-            if (MainServer.DebugMode || level == LogLevel.error || level == LogLevel.warning)
-            {
-                string prefix = "[vMenu] ";
-                if (level == LogLevel.error)
-                {
-                    prefix = "^1[vMenu] [ERROR]^7 ";
-                }
-                else if (level == LogLevel.info)
-                {
-                    prefix = "^5[vMenu] [INFO]^7 ";
-                }
-                else if (level == LogLevel.success)
-                {
-                    prefix = "^2[vMenu] [SUCCESS]^7 ";
-                }
-                else if (level == LogLevel.warning)
-                {
-                    prefix = "^3[vMenu] [WARNING]^7 ";
-                }
-                Debug.WriteLine($"{prefix}[DEBUG LOG] {data.ToString()}");
-            }
+           
         }
     }
 }
