@@ -2305,7 +2305,7 @@ namespace vMenuClient
             // Save was unsuccessful.
             return false;
         }
-        #endregion
+        
 
         #region Set Player Walking Style
         /// <summary>
