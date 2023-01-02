@@ -23,38 +23,7 @@ namespace vMenuClient
     {
         private int LastVehicle = 0;
         private bool SwitchedVehicle = false;
-        private List<int> deadPlayers = new List<int>();
-        private float cameraRotationHeading = 0f;
-
-        // show location variables
-        private Vector3 currentPos = Game.PlayerPed.Position;
-        private Vector3 nodePos = Game.PlayerPed.Position;
-        private float heading = 0f;
-        private float safeZoneSizeX = (1 / GetSafeZoneSize() / 3.0f) - 0.358f;
-        private uint crossing = 1;
-        private string crossingName = "";
-        private string suffix = "";
-        private List<int> waypointPlayerIdsToRemove = new List<int>();
-        private int voiceTimer = 0;
-        private int voiceCycle = 1;
-        private const float voiceIndicatorWidth = 0.02f;
-        private const float voiceIndicatorHeight = 0.041f;
-        private const float voiceIndicatorMutedWidth = voiceIndicatorWidth + 0.0021f;
-        public const string clothingAnimationDecor = "clothing_animation_type";
-        private bool clothingAnimationReverse = false;
-        private float clothingOpacity = 1f;
-
-        private const string snowball_anim_dict = "anim@mp_snowball";
-        private const string snowball_anim_name = "pickup_snowball";
-        private readonly uint snowball_hash = (uint)GetHashKey("weapon_snowball");
-        private bool showSnowballInfo = false;
-
-        private bool stopPropsLoop = false;
-        private bool stopVehiclesLoop = false;
-        private bool stopPedsLoop = false;
-        private List<Prop> props = new List<Prop>();
-        private List<Vehicle> vehicles = new List<Vehicle>();
-        private List<Ped> peds = new List<Ped>();
+        
 
         public FunctionsController() { }
 
