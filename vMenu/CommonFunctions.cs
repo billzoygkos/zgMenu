@@ -1648,7 +1648,7 @@ namespace vMenuClient
             {
                 if (keepWeapons)
                 {
-                    SaveWeaponLoadout("vmenu_temp_weapons_loadout_before_respawn");
+                    //SaveWeaponLoadout("vmenu_temp_weapons_loadout_before_respawn");
                     Log("saved from SetPlayerSkin()");
                 }
                 RequestModel(modelHash);
